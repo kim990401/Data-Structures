@@ -91,11 +91,41 @@ int main()
 
 void postOrderIterativeS2(BSTNode *root)
 {
-	 /* add your code here */
+	Stack s;
+	Stack check;
+	s.top = NULL;
+	check.top = NULL;
+	BSTNode *cur = root;
+	BSTNode *last = NULL;
+	push(&s, root);
+	while(s.top != NULL) {
+		if (cur->right != NULL && cur->right == peek(&check)) {
+			last = pop(&s);
+			push(&check, last);
+			printf("%d ", last->item);
+			cur = peek(&s);
+			continue;
+		}
+		if (cur->left != NULL && cur->left != peek(&check)) {
+			push(&s, cur->left);
+			cur = cur->left;
+		} else {
+			if (cur->right != NULL) {
+				push(&s, cur->right);
+				cur = cur->right;
+			} else {
+				last = pop(&s);
+				push(&check, last);
+				printf("%d ", last->item);
+				cur = peek(&s);
+			}
+		}
+	}
 }
 
 /* Given a binary search tree and a key, this function
    deletes the key and returns the new root. Make recursive function. */
+
 BSTNode* removeNodeFromTree(BSTNode *root, int value)
 {
 	/* add your code here */

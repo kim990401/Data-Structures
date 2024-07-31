@@ -20,7 +20,7 @@ typedef struct _listnode
 typedef struct _linkedlist
 {
 	int size;
-	ListNode *head;
+	ListNode *head; 
 } LinkedList;	// You should not change the definition of LinkedList
 
 
@@ -109,7 +109,11 @@ int main()
 
 void recursiveReverse(Queue *q)
 {
-/* add your code here */
+	int item = dequeue(q);
+	if (q->ll.size != 0) {
+		recursiveReverse(q);
+	}
+	enqueue(q, item);
 }
 
 //////////////////////////////////////////////////////////////////

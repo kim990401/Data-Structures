@@ -53,7 +53,6 @@ int main()
 	int c, i;
 	LinkedList ll;
 	Stack s;
-
 	c = 1;
 	// Initialize the linked list as an empty linked list
 	ll.head = NULL;
@@ -113,7 +112,12 @@ int main()
 
 void createStackFromLinkedList(LinkedList *ll, Stack *s)
 {
-    /* add your code here */
+	removeAllItemsFromStack(s);
+    ListNode *now = ll->head;
+	while(now != NULL) {
+		push(s,now->item);
+		now = now->next;
+	}
 }
 
 void removeEvenValues(Stack *s)
